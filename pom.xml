@@ -16,6 +16,7 @@
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <junit-jupiter.version>5.9.0</junit-jupiter.version>
+        <codeborne.version>6.17.2</codeborne.version>
     </properties>
 
     <dependencies>
@@ -41,6 +42,11 @@
             <artifactId>junit-jupiter-params</artifactId>
             <version>${junit-jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${codeborne.version}</version>
         </dependency>
     </dependencies>
 
