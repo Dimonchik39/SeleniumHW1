@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
     private final SelenideElement usernameLinkInNavBar = $("nav li.mdc-menu-surface--anchor a");
+    private final SelenideElement profileLinkInNavBar = $x("//nav//li[contains(@class,'mdc-menu-surface--anchor')]//span[text()='Profile']");
     private final SelenideElement createGroupButton = $("#create-btn");
     private final SelenideElement groupNameField = $x("//form//span[contains(text(), 'Group name')]/following-sibling::input");
     private final SelenideElement submitButtonOnModalWindow = $("form div.submit button");
@@ -47,14 +48,30 @@ public class MainPage {
     public void closeCreateStudentsModalWindow() {
         closeCreateStudentsFormIcon.click();
     }
+    public void clickUsernameLabel() {
+        usernameLinkInNavBar.shouldBe(visible).click();
+    }
+    public void clickProfileLink() {
+        profileLinkInNavBar.shouldBe(visible).click();
+    }
     public String getUsernameLabelText() {
         return usernameLinkInNavBar.shouldBe(visible).getText().replace("\n", " ");
+    }
+    public void clickTrashIconOnGroupWithTitle(String title) {
+        getGroupRowByTitle(title).clickTrashIcon();
+    }
+
+    public void clickRestoreFromTrashIconOnGroupWithTitle(String title) {
+        getGroupRowByTitle(title).clickRestoreFromTrashIcon();
     }
     public void clickAddStudentsIconOnGroupWithTitle(String title) {
         getGroupRowByTitle(title).clickAddStudentsIcon();
     }
     public void clickZoomInIconOnGroupWithTitle(String title) {
         getGroupRowByTitle(title).clickZoomInIcon();
+    }
+    public String getStatusOfGroupWithTitle(String title) {
+        return getGroupRowByTitle(title).getStatus();
     }
 
     public void waitStudentsCount(String groupTestName, int studentsCount) {
